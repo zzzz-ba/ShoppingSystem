@@ -1,0 +1,78 @@
+// 用户登录示例
+@startuml
+
+actor User
+participant LoginInManage
+participant User
+
+User -> LoginInManage: loginOfUser()
+LoginInManage -> LoginInManage: Validate Input
+alt Input Valid
+  LoginInManage -> User: Successful Login
+else Input Invalid
+  LoginInManage -> User: Login Failed
+end
+
+@enduml
+
+// 添加商品到购物车示例
+@startuml
+
+actor User
+participant ShoppingCartManage
+participant User
+
+User -> ShoppingCartManage: insertToShoppingCart(user)
+ShoppingCartManage -> ShoppingCartManage: Validate Input
+alt Input Valid
+  ShoppingCartManage -> ShoppingCartManage: Add Item to Cart
+else Input Invalid
+  ShoppingCartManage -> User: Add Item Failed
+end
+
+@enduml
+
+// 用户更改密码示例
+
+@startuml
+
+actor User
+participant PasswordManage
+participant User
+
+User -> PasswordManage: changePassword(user)
+PasswordManage -> PasswordManage: Validate Input
+alt Input Valid
+  PasswordManage -> PasswordManage: Change Password
+else Input Invalid
+  PasswordManage -> User: Change Password Failed
+end
+
+@enduml
+
+// 管理员添加商品示例
+
+@startuml
+
+actor Admin
+participant CommodityManage
+
+Admin -> CommodityManage: insertCommodity()
+CommodityManage -> CommodityManage: Insert Commodity Data
+
+@enduml
+
+
+// 查询用户信息示例
+
+@startuml
+
+actor Admin
+participant UserManage
+participant User
+
+Admin -> UserManage: queryUser()
+UserManage -> UserManage: Query User Data
+UserManage --> Admin: Display User Data
+
+@enduml

@@ -1,0 +1,154 @@
+@startuml
+
+class CommodityManage {
+  + showAllCommodities(): void
+  + insertCommodity(): void
+  + deleteCommodity(): void
+  + queryDataById(connection: Connection, targetId: int): boolean
+  + updateCommodity(): void
+  + showAllC(resultSet: ResultSet): void
+  + isDatabaseEmpty(connection: Connection): boolean
+}
+
+class LoginInManage {
+  + register(): void
+  + loginOfAdministrator(): Admin
+  + loginOfUser(): User
+}
+
+class PasswordManage{
+  + changePassword(admin: Admin): void
+  + changePassword(user: User): void
+  + resetPassword(user: User): void
+  + resetUserPassword(): void
+}
+
+class ShoppingCartManage{
+  + insertToShoppingCart(user: User): void
+  + deleteFromShoppingCart(user: User): void
+  + updateInShoppingCart(user: User): void
+  + checkoutShoppingCart(user: User): void
+  + showShoppingHistory(user: User): void
+  + showAllCommoditiesToUser(): void
+}
+
+class UserManage{
+  + showAllUsers(): void
+  + deleteUser(): void
+  + queryUser(): void
+  + queryDataById(connection: Connection, targetId: String): boolean
+  + showAllU(resultSet: ResultSet): void
+  + isDatabaseEmpty(connection: Connection): boolean
+}
+
+class Admin {
+  - userName: String
+  - password: String
+  + getUserName(): String
+  + setUserName(userName: String): void
+  + getPassword(): String
+  + setPassword(password: String): void
+}
+
+class Commodity {
+  - id: String
+  - name: String
+  - manufacturer: String
+  - dateOfManufacturer: LocalDate
+  - type: String
+  - buyingPrice: double
+  - sellingPrice: double
+  - num: int
+  - buyingTime: LocalDateTime
+  + getId(): String
+  + setId(id: String): void
+  + getName(): String
+  + setName(name: String): void
+  + getManufacturer(): String
+  + setManufacturer(manufacturer: String): void
+  + getDateOfManufacturer(): LocalDate
+  + setDateOfManufacturer(dateOfManufacturer: LocalDate): void
+  + getType(): String
+  + setType(type: String): void
+  + getBuyingPrice(): double
+  + setBuyingPrice(buyingPrice: double): void
+  + getSellingPrice(): double
+  + setSellingPrice(sellingPrice: double): void
+  + getNum(): int
+  + setNum(num: int): void
+  + getBuyingTime(): LocalDateTime
+  + setBuyingTime(buyingTime: LocalDateTime): void
+}
+
+class User {
+  - userId: Integer
+  - userName: String
+  - level: String
+  - password: String
+  - createTime: LocalDateTime
+  - consumeMoney: double
+  - phoneNumber: String
+  - userEmail: String
+  + getUserId(): Integer
+  + setUserId(userId: Integer): void
+  + getUserName(): String
+  + setUserName(userName: String): void
+  + getLevel(): String
+  + setLevel(level: String): void
+  + getPassword(): String
+  + setPassword(password: String): void
+  + getCreateTime(): LocalDateTime
+  + setCreateTime(createTime: LocalDateTime): void
+  + getConsumeMoney(): double
+  + setConsumeMoney(consumeMoney: double): void
+  + getPhoneNumber(): String
+  + setPhoneNumber(phoneNumber: String): void
+  + getUserEmail(): String
+  + setUserEmail(userEmail: String): void
+}
+
+class Information {
+  - url: String
+  - username: String
+  - password: String
+}
+
+class Regex {
+  + isValidPassword(password: String): boolean
+  + isValidPhoneNumber(phoneNumber: String): boolean
+  + isValidEmail(userEmail: String): boolean
+}
+
+class StartMenu{
+  + Start(): void
+}
+
+class Test{
+  + main(): void
+}
+
+User --> ShoppingCartManage
+User --> LoginInManage
+User --> PasswordManage
+
+Admin --> CommodityManage
+Admin --> LoginInManage
+Admin --> PasswordManage
+Admin --> UserManage
+
+Commodity --> CommodityManage
+Commodity --> ShoppingCartManage
+
+Regex --> LoginInManage
+
+Information --> Test
+
+Test --> StartMenu
+
+StartMenu --> CommodityManage
+StartMenu --> LoginInManage
+StartMenu --> PasswordManage
+StartMenu --> ShoppingCartManage
+StartMenu --> UserManage
+
+@enduml

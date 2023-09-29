@@ -1,0 +1,34 @@
+@startuml
+
+left to right direction
+
+actor User as UserActor
+actor Admin as AdminActor
+
+rectangle "User Use Cases" {
+  UserActor --> (Register)
+  UserActor --> (Login)
+  UserActor --> (Change Password)
+  UserActor --> (Reset Password)
+  UserActor --> (Add to Cart)
+  UserActor --> (Delete from Cart)
+  UserActor --> (Update Cart)
+  UserActor --> (Checkout Cart)
+  UserActor --> (View Shopping History)
+  UserActor --> (View All Commodities)
+}
+
+rectangle "Admin Use Cases" {
+  AdminActor --> (Login)
+  AdminActor --> (Add Commodity)
+  AdminActor --> (Delete Commodity)
+  AdminActor --> (Update Commodity)
+  AdminActor --> (View All Commodities)
+  AdminActor --> (View All Users)
+  AdminActor --> (Delete User)
+  AdminActor --> (Query User)
+}
+
+UserActor --> AdminActor : (Login as Admin)
+
+@enduml
